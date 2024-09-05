@@ -3,14 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "vitest run",
-    "teste:watch": "vitest run --watch"
+    "teste:watch": "vitest run --watch",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@rocketseat/eslint-config": "^2.2.2",
     "@types/node": "^22.5.4",
     "typescript": "^5.5.4",
     "vite-tsconfig-paths": "^5.0.1",
