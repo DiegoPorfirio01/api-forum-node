@@ -1,4 +1,3 @@
-import { CreateQuestionUseCase } from './create-question'
 import { AnswerQuestionUseCase } from './answer-question';
 import { InMemoryAnswersRepository } from '@/test/repositories/in-memory-answers-repository ';
 
