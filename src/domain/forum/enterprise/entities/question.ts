@@ -85,6 +85,7 @@ export class Question extends Entity<QuestionProps> {
 
     return question
   }
+
   // constructor(props: QuestionProps ,id?: string) {
   //   super(props, id)
   // }
