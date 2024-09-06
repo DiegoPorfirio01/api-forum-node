@@ -16,6 +16,7 @@ describe('Delete Question', () => {
     const question = makeQuestion(
       {
         title: 'Hello World ?',
+        authorId: new UniqueEntityId('7'),
       },
       new UniqueEntityId('7'),
     )
@@ -28,8 +29,30 @@ describe('Delete Question', () => {
       throw new Error('Question not found')
     }
 
-    sut.execute({ question: questionToDelete })
+    sut.execute({ question: questionToDelete, authorId: '7' })
 
     expect(inMemoryQuestionsRepository.items).toHaveLength(0)
+  })
+
+  it('should not be able to delete a question of another user', async () => {
+    const question = makeQuestion(
+      {
+        title: 'Hello World ?',
+        authorId: new UniqueEntityId('8'),
+      },
+      new UniqueEntityId('7'),
+    )
+
+    await inMemoryQuestionsRepository.create(question)
+
+    const questionToDelete = await inMemoryQuestionsRepository.findById('7')
+
+    if (!questionToDelete) {
+      throw new Error('Question not found')
+    }
+
+    expect(() =>
+      sut.execute({ question: questionToDelete, authorId: '1' }),
+    ).rejects.toBeInstanceOf(Error)
   })
 })
