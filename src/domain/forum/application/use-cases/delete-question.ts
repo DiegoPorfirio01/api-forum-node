@@ -10,13 +10,15 @@ export class DeleteQuestionUseCase {
   constructor(private questionRepository: QuestionRepository) {}
 
   async execute({ question, authorId }: DeleteQuestionUseCaseRequest) {
-    await this.questionRepository.findById(question.id.toString()!)
+    const questionToDelete = await this.questionRepository.findById(
+      question.id.toString()!,
+    )
 
-    if (!question) {
+    if (!questionToDelete) {
       throw new Error('Question not found')
     }
 
-    if (question.authorId.toString() !== authorId) {
+    if (questionToDelete.authorId.toString() !== authorId) {
       throw new Error('You are not the author of this question')
     }
 

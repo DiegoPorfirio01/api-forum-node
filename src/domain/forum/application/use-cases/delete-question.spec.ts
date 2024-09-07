@@ -29,7 +29,7 @@ describe('Delete Question', () => {
       throw new Error('Question not found')
     }
 
-    sut.execute({ question: questionToDelete, authorId: '7' })
+    await sut.execute({ question: questionToDelete, authorId: '7' })
 
     expect(inMemoryQuestionsRepository.items).toHaveLength(0)
   })
