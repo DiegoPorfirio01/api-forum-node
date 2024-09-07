@@ -21,7 +21,7 @@ export class CreateQuestionUseCase {
     content,
   }: CreateQuestionUseCaseRequest): Promise<CreateQuestionUseCaseResponse> {
     const question = Question.create({
-      authorId : new UniqueEntityId(authorId),
+      authorId: new UniqueEntityId(authorId),
       title,
       content,
     })
@@ -29,7 +29,7 @@ export class CreateQuestionUseCase {
     await this.questionRepository.create(question)
 
     return {
-      question
+      question,
     }
   }
 }

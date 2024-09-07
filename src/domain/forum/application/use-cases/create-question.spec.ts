@@ -1,7 +1,7 @@
-import { InMemoryQuestionsRepository } from '@/test/repositories/in-memory-questions-repository';
+import { InMemoryQuestionsRepository } from '@/test/repositories/in-memory-questions-repository'
 import { CreateQuestionUseCase } from './create-question'
 
-let inMemoryQuestionsRepository : InMemoryQuestionsRepository
+let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let sut: CreateQuestionUseCase // sut system under test
 
 describe('Create Question', () => {
@@ -16,10 +16,8 @@ describe('Create Question', () => {
       title: 'Question title',
       content: 'Answer content',
     })
-  
+
     expect(question.id).toBeTruthy()
     expect(inMemoryQuestionsRepository.items[0].id).toEqual(question.id)
   })
-});
-
-
+})

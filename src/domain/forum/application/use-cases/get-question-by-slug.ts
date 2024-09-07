@@ -13,16 +13,16 @@ export class GetQuestionBySlugUseCase {
   constructor(private questionRepository: QuestionRepository) {}
 
   async execute({
-    slug
+    slug,
   }: GetQuestionBySlugUseCaseRequest): Promise<GetQuestionBySlugUseCaseResponse> {
     const question = await this.questionRepository.findBySlug(slug)
 
-    if(! question) {
+    if (!question) {
       throw new Error('Question not found')
     }
 
     return {
-      question
+      question,
     }
   }
 }
