@@ -1,5 +1,5 @@
-import type { QuestionRepository } from '../repositories/question-repository'
-import { Question } from '../../enterprise/entities/question'
+import type { QuestionRepository } from '../../repositories/question-repository'
+import { Question } from '../../../enterprise/entities/question'
 
 interface GetQuestionByIdUseCaseRequest {
   id: string

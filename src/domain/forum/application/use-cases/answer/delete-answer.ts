@@ -1,5 +1,5 @@
-import { Answer } from '../../enterprise/entities/answer'
-import type { AnswersRepository } from '../repositories/answers-repository'
+import { Answer } from '../../../enterprise/entities/answer'
+import type { AnswersRepository } from '../../repositories/answers-repository'
 
 interface DeleteAnswerUseCaseRequest {
   answer: Answer
