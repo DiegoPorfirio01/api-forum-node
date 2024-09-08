@@ -1,3 +1,4 @@
+import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 import type { QuestionRepository } from '@/domain/forum/application/repositories/question-repository'
 import type { Question } from '@/domain/forum/enterprise/entities/question'
 
@@ -31,6 +32,14 @@ export class InMemoryQuestionsRepository implements QuestionRepository {
   async save(question: Question) {
     const index = this.items.findIndex((item) => item.id === question.id)
     this.items[index] = question
+  }
+
+  async saveBestAnswer(questionId: string, answerId: string) {
+    const index = this.items.findIndex(
+      (item) => item.id.toString() === questionId,
+    )
+
+    this.items[index].bestAnswerId = new UniqueEntityId(answerId)
   }
 
   async delete(question: Question) {
