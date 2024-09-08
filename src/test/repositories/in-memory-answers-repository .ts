@@ -1,3 +1,4 @@
+import type { PaginationParams } from '@/core/repositories/pagination-params'
 import type { AnswersRepository } from '@/domain/forum/application/repositories/answers-repository'
 import type { Answer } from '@/domain/forum/enterprise/entities/answer'
 
@@ -16,6 +17,12 @@ export class InMemoryAnswersRepository implements AnswersRepository {
 
   async create(answer: Answer) {
     this.items.push(answer)
+  }
+
+  async findManyAnswers(questionId: string, { page }: PaginationParams) {
+    return this.items
+      .filter((item) => item.questionId.toString() === questionId)
+      .slice((page - 1) * 20, page * 20)
   }
 
   async save(answer: Answer) {

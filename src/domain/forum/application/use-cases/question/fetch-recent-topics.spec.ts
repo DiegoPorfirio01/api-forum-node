@@ -5,7 +5,7 @@ import { makeQuestion } from '@/test/factories/make-question'
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let sut: FetchRecentQuestionsUseCase
 
-describe('Fetch Questions', () => {
+describe('Fetch Recent Questions', () => {
   beforeEach(() => {
     inMemoryQuestionsRepository = new InMemoryQuestionsRepository()
     sut = new FetchRecentQuestionsUseCase(inMemoryQuestionsRepository)
