@@ -43,14 +43,8 @@ describe('Delete Answer', () => {
 
     await inMemoryAnswersRepository.create(answer)
 
-    const answerToDelete = await inMemoryAnswersRepository.findById('7')
-
-    if (!answerToDelete) {
-      throw new Error('Answer not found')
-    }
-
-    expect(() =>
-      sut.execute({ answer: answerToDelete, authorId: '6' }),
-    ).rejects.toBeInstanceOf(Error)
+    expect(() => sut.execute({ answer, authorId: '6' })).rejects.toBeInstanceOf(
+      Error,
+    )
   })
 })
