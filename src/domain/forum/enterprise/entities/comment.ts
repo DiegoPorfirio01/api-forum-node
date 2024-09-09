@@ -1,9 +1,8 @@
 import { Entity } from '@/core/entities/entity'
-import type { UniqueEntityId } from '@/core/entities/unique-entity-id'
-import dayjs from 'dayjs'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
 export interface CommentProps {
-  authorId: UniqueEntityId
+  authorId: UniqueEntityID
   content: string
   createdAt: Date
   updatedAt?: Date
@@ -12,12 +11,12 @@ export interface CommentProps {
 export abstract class Comment<
   Props extends CommentProps,
 > extends Entity<Props> {
-  get content() {
-    return this.props.content
-  }
-
   get authorId() {
     return this.props.authorId
+  }
+
+  get content() {
+    return this.props.content
   }
 
   get createdAt() {
@@ -28,20 +27,12 @@ export abstract class Comment<
     return this.props.updatedAt
   }
 
-  get isNew() {
-    return dayjs().diff(this.props.createdAt, 'day') < 4
-  }
-
-  get summary() {
-    return this.props.content.substring(0, 120).trimEnd().concat('...')
-  }
-
   private touch() {
     this.props.updatedAt = new Date()
   }
 
-  set content(value: string) {
-    this.props.content = value
+  set content(content: string) {
+    this.props.content = content
     this.touch()
   }
 }

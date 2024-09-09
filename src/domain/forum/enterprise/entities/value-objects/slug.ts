@@ -5,25 +5,28 @@ export class Slug {
     this.value = value
   }
 
-  static create(slug: string) {
-    return new Slug(slug)
+  static create(value: string) {
+    return new Slug(value)
   }
 
   /**
-   * Receives a string and normalize it as a slug
+   * Receives a string and normalize it as a slug.
    *
-   * Example:"An example title" => "an-example-title"
+   * Example: "An example title" => "an-example-title"
    *
-   * @param text (string)
-   * @returns
+   * @param text {string}
    */
-  static createFromText(text: string) {
-    const slug = text
+  static createFromText(text: string): Slug {
+    const slugText = text
       .normalize('NFKD')
       .toLowerCase()
       .trim()
-      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]+/g, '')
+      .replace(/_/g, '-')
+      .replace(/--+/g, '-')
+      .replace(/-$/g, '')
 
-    return new Slug(slug)
+    return new Slug(slugText)
   }
 }
